@@ -1,0 +1,182 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body{
+    background: skyblue;
+}
+
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wrapper{
+    width: 1000px;
+    height: auto;
+    margin: auto;
+    background: rgb(226, 225, 223);
+}
+
+
+header-wrapper{
+    width: 1000px;
+    height: 100px;
+    margin: auto;
+    background: blue;
+}
+
+#logo{
+    padding-top: 10px;
+    border: none;
+}
+
+.content-wrapper{
+    width: 1000px;
+    height: auto;
+    background: aquamarine;
+}
+
+.content-area{
+    width:800px;
+    height:auto;    
+    float: right;
+    background: aquamarine;
+}
+
+#sidebar{
+    width: 200px;
+    background: rgb(226, 225, 223);
+    float: left;
+}
+
+#footer{
+    width: 1000px;
+    height: 100px;
+    background: blue;
+    clear: both;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    
+}
+
+.menubar{
+    width: 1000px;
+    height: 50px;
+    color: white;
+    background: blue;
+}
+
+#menu{
+    padding: 0;
+    margin: 0;
+    line-height: 35px;
+    float: left;
+}
+
+#menu li{
+    list-style: none;
+    display: inline;
+}
+
+#menu a{
+    text-decoration: none;
+    color: white;
+    padding: 5px 5px 20px 8px;
+    margin: 5px;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#menu a:hover{
+    text-decoration: none;
+    background-color:royalblue;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+#form{
+    float: right;
+    padding-right: 8px;
+    line-height: 35px;
+}
+
+#sidebar-title{
+    font-size: 22px;
+    padding: 10px;
+
+}
+
+#cats{
+    padding: 0;
+}
+
+#cats li{
+    list-style: none;
+    margin: 0px;
+
+}
+
+#cats a{
+    display: block;
+    padding: 8px;
+    margin: 0px;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#cats :hover{
+    color: white;
+    background-color: royalblue;
+}
+#sidebar-title{
+    font-weight: bolder;
+    color: white;
+    background: rgb(21, 21, 54);
+}
+
+#products_box{
+    width: 780px;
+    align-items: center;
+    align-content: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#single_product{
+    float: left;
+    margin-left: 20px;
+    padding: 10px;
+}
+
+#single_product img{
+    border:1px solid black;
+}
+
+#shopping_cart{
+    width:800px;
+    height: 46px;
+    background: rgb(213, 213, 219);
+}
