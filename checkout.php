@@ -64,27 +64,24 @@
 
                 <?php 
                     if(isset($_SESSION['customer_email'])){
-                        echo "<b>Welcome</b>" . $_SESSION['customer_email'];
+                        echo "<b>Welcome:</b>" . $_SESSION['customer_email'];
                     }else{
-                        echo "<b>Welcome guest</b>";
+                        echo "Welcome guest";
                     }
                 ?>
                 
-                <b>  Shopping Cart - </b> Total items:<?php total_items();?> Total price:<b><?php total_price();?></b>
+                <b>  Shopping Cart - </b> <b>Total items:</b><?php total_items();?> <b>Total price</b>:<?php total_price();?>
                 <a href="cart.php">Go to cart</a>
-                <?php
-                    if(!isset($_SESSION['customer_email'])){
-                        echo "<a href='checkout.php'>Login</a>";
-                    }else{
-                        echo "<a href='logout.php'>Logout</a>";
-                    }
-                ?>
             </span>
         </div>
             <div id="products_box">
-                <?php getProducts();?>
-                <?php getCategoryProducts();?>
-                <?php getBrandProducts();?>
+                <?php
+                    if(!isset($_SESSION['customer_email'])){
+                        include("customer_login.php");
+                    }else{
+                        include("payment.php"); 
+                    }
+                ?>
             </div>
         </div>
 

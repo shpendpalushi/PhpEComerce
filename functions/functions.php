@@ -97,7 +97,7 @@ function getCategoryProducts(){
                         <p style='text-align:center'>Price: $ $product_price</p><br>
 
                         <a href='details.php?product_id=$product_id' style='float:left'>Details</a>
-                        <a href='index.phpproduct_id = $product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
+                        <a href='index.php?product_id = $product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
 
                     </div>
             
@@ -135,7 +135,7 @@ function getBrandProducts(){
                         <p style='text-align:center'>Price: $ $product_price</p><br>
 
                         <a href='details.php?product_id=$product_id' style='float:left'>Details</a>
-                        <a href='index.phpproduct_id = $product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
+                        <a href='index.php?product_id = $product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
 
                     </div>
             
@@ -166,7 +166,7 @@ function getAllProducts(){
                     <p style='text-align:center'>Price: $ $product_price</p><br>
 
                     <a href='details.php?product_id=$product_id' style='float:left'>Details</a>
-                    <a href='index.php?product_id = $product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
+                    <a href='all_products.php?add_cart=$product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
 
                 </div>
         
@@ -217,7 +217,7 @@ function cart(){
         $ip = getIp();
          $product_id = $_GET['add_cart'];
          $check_product= "select * from cart where ip_address = '$ip' AND product_id='$product_id'";
-         $run_check = mysqli_query($con, $check_pro);
+         $run_check = mysqli_query($con, $check_product);
 
          if(mysqli_num_rows($run_check)>0){
              echo "";
@@ -226,7 +226,7 @@ function cart(){
 
              $run_product = mysqli_query($con, $insert_product);
              echo "<script>
-                window.opend('index.php', '_self');
+                window.open('index.php', '_self');
              </script>";
          }
     }   
@@ -243,6 +243,46 @@ function getIp() {
  
     return $ip;
 }
+
+function total_items(){
+    global $con;
+    if(isset($_GET['add_cart'])){
+        $ip = getIp();
+        $get_items = "select * from cart where ip_address = '$ip'";
+        $run_items = mysqli_query($con, $get_items);
+        $count_items = mysqli_num_rows($run_items);
+    }else{
+        global $con;
+        $ip = getIp();
+        $get_items = "select * from cart where ip_address = '$ip'";
+        $run_items = mysqli_query($con, $get_items);
+        $count_items = mysqli_num_rows($run_items);
+    }
+    echo $count_items;
+}
+
+function total_price(){
+    $total = 0;
+
+    global $con;
+
+    $ip = getIp();
+    $select_price = "select * from cart where ip_address='$ip'";
+
+    $run_price = mysqli_query($con, $select_price);
+    while($p_price = mysqli_fetch_array($run_price)){
+        $product_id = $p_price['product_id'];
+        $product_price = "select * from products where product_id = '$product_id'";
+        $run_product_price = mysqli_query($con,$product_price);
+        while($pp_price=mysqli_fetch_array($run_product_price)){
+            $table_product_price = array($pp_price['product_price']);
+        }
+        $values=array_sum($table_product_price);
+        $total += $values;
+    }
+    echo "$".$total;
+}
+
 
 ?>
 

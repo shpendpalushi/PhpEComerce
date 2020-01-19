@@ -55,9 +55,12 @@
         </div>
 
         <div class="content-area">
+        <?php 
+            cart();
+        ?>
         <div id="shopping_cart">
             <span style="float:right; font-size:18px; padding:5px;line-height:40px;">
-                Welcome user!<b>  Shopping Cart - </b> Total items: Total price:
+                Welcome user!<b>  Shopping Cart - </b> Total items:<?php total_items(); ?> Total price:
                 <a href="cart.php">Go to cart</a>
             </span>
         </div>
