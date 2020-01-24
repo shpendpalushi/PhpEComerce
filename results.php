@@ -21,7 +21,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="all_products.php">All products</a></li>
                     <li><a href="customer/my_account.php">My account</a></li>
-                    <li><a href="">Sign up</a></li>
+                    <li><a href="">Hyr</a></li>
                     <li><a href="cart.php">Shopping Card</a></li>
                     <li><a href="">Contact Us</a></li>
                 </ul>

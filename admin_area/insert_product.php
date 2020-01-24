@@ -25,23 +25,23 @@
     <form action="insert_product.php" method="post" enctype="multipart/form-data">
         <table align="center" width="1000px" border="1">
             <tr>
-                <td colspan="2" align="center"><h2>Insert a new product here</h2></td>
+                <td colspan="2" align="center"><h2>Shto produkt ketu</h2></td>
             </tr>
 
             <tr>
                 <td align="right" >Product category: </td>
                 <td>
                     <select name="product_category" id="">
-                    <option value="">Select Category</option>
+                    <option value="">Zgjidhe kategorine</option>
                         <?php
-                            $get_categories = "select * from categories";
-                            $run_categories = mysqli_query($con, $get_categories);
+                            $merr_kategorite = "select * from categories";
+                            $ekzekuto_kategorite = mysqli_query($con, $merr_kategorite);
 
-                            while($row_categories = mysqli_fetch_array($run_categories)) {
+                            while($rresht_kategorite = mysqli_fetch_array($ekzekuto_kategorite)) {
                         
-                                $category_id = $row_categories['category_id'];
-                                $category_title = $row_categories['category_title'];
-                                echo "<option value='$category_id'>$category_title</option>";
+                                $titull_idi = $rresht_kategorite['category_id'];
+                                $titull_kategori = $rresht_kategorite['category_title'];
+                                echo "<option value='$titull_idi'>$titull_kategori</option>";
                         
                             }
                         ?>
@@ -50,19 +50,19 @@
             </tr>
 
             <tr>
-                <td align="right">Product Brand: </td>
+                <td align="right">Brandi i produktit: </td>
                 <td>
                 <select name="product_brand" id="">
-                    <option value="">Select Brand</option>
+                    <option value="">Zgjidh brandin:</option>
                         <?php
-                            $get_brands = "select * from brands";
-                            $run_brands = mysqli_query($con, $get_brands);
+                            $merr_brandet = "select * from brands";
+                            $ekzekuto_brandet = mysqli_query($con, $merr_brandet);
                         
-                            while($row_brands = mysqli_fetch_array($run_brands)) {
+                            while($rreshtat_brand = mysqli_fetch_array($ekzekuto_brandet)) {
                         
-                                $brand_id = $row_brands['brand_id'];
-                                $brand_title = $row_brands['brand_title'];
-                                echo "<option value='$brand_id'>$brand_title</option>";
+                                $brand_id = $rreshtat_brand['brand_id'];
+                                $titull_brand = $rreshtat_brand['brand_title'];
+                                echo "<option value='$brand_id'>$titull_brand</option>";
                         
                             }
                         ?>
@@ -76,22 +76,22 @@
             </tr>
 
             <tr>
-                <td align="right">Product Price: </td>
+                <td align="right">Cmimi i Produktit: </td>
                 <td colspan="3"><input type="text" name="product_price"></td>
             </tr>
 
             <tr>
-                <td align="right">Product Descrption: </td>
+                <td align="right">Pershkrimi i Produktit: </td>
                 <td height="300"><textarea name="product_description" rows="20" cols="20" id="mytextarea"></textarea></td>
             </tr>
 
             <tr>
-                <td align="right">Product Image: </td>
+                <td align="right">Fotoja e produktit: </td>
                 <td><input type="file" name="product_image"></td>
             </tr>
 
             <tr>
-                <td align="right">Product Keywords: </td>
+                <td align="right">Fjalet kyce per produktin: </td>
                 <td><input type="text"  align="center" name="product_keywords"></td>
             </tr>
 
@@ -108,25 +108,25 @@
 
 <?php
     if(isset($_POST['insert_post'])){
-         $product_title = $_POST['product_title'];
-         $product_category = $_POST['product_category'];
-         $product_brand = $_POST['product_brand'];
+         $titull_produkt = $_POST['product_title'];
+         $kategoril_produkt = $_POST['product_category'];
+         $brand_produkt = $_POST['product_brand'];
          $product_price = $_POST['product_price'];
-         $product_description = $_POST['product_description'];
-         $product_keywords = $_POST['product_keywords'];
+         $pershkrim_produkt = $_POST['product_description'];
+         $fjale_kyce_produkt = $_POST['product_keywords'];
 
 
-         $product_image = $_FILES['product_image']['name'];
-         $product_image_tmp = $_FILES['product_image']['tmp_name'];
+         $foto_produkt = $_FILES['product_image']['name'];
+         $foto_produkt_tmp = $_FILES['product_image']['tmp_name'];
         
-         move_uploaded_file($product_image_tmp, "product_images/$product_image");
+         move_uploaded_file($foto_produkt_tmp, "product_images/$foto_produkt");
 
-         $insert_product_query= "insert into products (product_category, product_brand, product_title, product_price,product_description, product_image,product_keywords)
-         values('$product_category','$product_brand','$product_title','$product_price','$product_description','$product_image','$product_keywords')";
+         $shto_produkt_query= "insert into products (product_category, product_brand, product_title, product_price,product_description, product_image,product_keywords)
+         values('$kategoril_produkt','$brand_produkt','$titull_produkt','$product_price','$pershkrim_produkt','$foto_produkt','$fjale_kyce_produkt')";
 
-         $insert_product = mysqli_query($con, $insert_product_query);
+         $shto_produkt = mysqli_query($con, $shto_produkt_query);
 
-         if($insert_product){
+         if($shto_produkt){
              echo "<script>alert('Info successfully inserted to database')</script>";
              echo "<script>window.open('insert_product.php', '_self')</script>";
          }

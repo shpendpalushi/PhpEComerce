@@ -19,12 +19,12 @@
         <div class="menubar">
             
             <ul id="menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="all_products.php">All products</a></li>
-                <li><a href="customer/my_account.php">My account</a></li>
-                <li><a href="">Sign up</a></li>
-                <li><a href="cart.php">Shopping Card</a></li>
-                <li><a href="">Contact Us</a></li>
+                <li><a href="index.php">Kreu</a></li>
+                <li><a href="all_products.php">Te gjitha produktet</a></li>
+                <li><a href="customer/my_account.php">Llogaria</a></li>
+                <li><a href="">Hyr</a></li>
+                <li><a href="cart.php">Karta e blerjes</a></li>
+                <li><a href="">Na kontaktoni</a></li>
             </ul>
             <div id="form">
                 <form action="results.php" method="get" enctype="multipart/form-data">
@@ -38,7 +38,7 @@
         <div class="content-wrapper"></div>
         <div id="sidebar">
         
-            <div id="sidebar-title">Categories
+            <div id="sidebar-title">Kategorite
             </div>
 
             <ul id="cats">
@@ -46,7 +46,7 @@
             </ul>
 
 
-            <div id="sidebar-title">Brands
+            <div id="sidebar-title">Brandet
             </div>
             
             <ul id="cats">
@@ -64,14 +64,14 @@
 
                 <?php 
                     if(isset($_SESSION['customer_email'])){
-                        echo "<b>Welcome:</b>" . $_SESSION['customer_email'];
+                        echo "<b>Miresevini:</b>" . $_SESSION['customer_email'];
                     }else{
-                        echo "Welcome guest";
+                        echo "Miresevini i ftuar";
                     }
                 ?>
                 
-                <b>  Shopping Cart - </b> <b>Total items:</b><?php total_items();?> <b>Total price</b>:<?php total_price();?>
-                <a href="cart.php">Go to cart</a>
+                <b>  Karta e blerjes - </b> <b>Produktet:</b><?php total_items();?> <b>Cmimi</b>:<?php total_price();?>
+                <a href="cart.php">Karta</a>
             </span>
         </div>
             <div id="products_box">

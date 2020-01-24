@@ -22,18 +22,18 @@
     include("../includes/database.php");
     if(isset($_POST['delete'])){
         $user = $_SESSION['customer_email'];
-        $password = $_POST['password'];
+        $fjalekalim = $_POST['password'];
 
-        $check_password = "select * from customers where customer_email='$user' and customer_password='$password'";
-        $run_check_password = mysqli_query($con, $check_password);
+        $kontroll_fjalekalim = "select * from customers where customer_email='$user' and customer_password='$fjalekalim'";
+        $ekzekuto_kontroll_fjalekalim = mysqli_query($con, $kontroll_fjalekalim);
 
-        $num_check_password = mysqli_num_rows($run_check_password);
+        $numer_kontroll_fjalekalim = mysqli_num_rows($ekzekuto_kontroll_fjalekalim);
 
-        if($num_check_password == 0){
+        if($numer_kontroll_fjalekalim == 0){
             echo "<script>alert('Nuk e keni shkruar mire passwordin, mendojeni edhe nje here fshirjen, mos u nxitoni!')</script>";
         }else{
-            $delete_user = "delete from customers where customer_email='$user'";
-            $run_delete_user = mysqli_query($con, $delete_user);
+            $fshi_perdorues = "delete from customers where customer_email='$user'";
+            $ekzekuto_fshi_perdorues = mysqli_query($con, $fshi_perdorues);
             echo "<script>window.open('../index.php','_self')</script>";
             session_destroy();
         }

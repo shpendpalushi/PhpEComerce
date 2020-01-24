@@ -36,20 +36,20 @@
     include("../includes/database.php");
     if(isset($_POST['change_password'])){
         $user = $_SESSION['customer_email'];
-        $current_password=$_POST['current_password'];
-        $new_password = $_POST['new_password'];
-        $new_password_confirm=$_POST['new_password_confirm'];
-        $select_password = "select customer_id from customers where customer_email='$user' and customer_password='$current_password'";
-        $run_password = mysqli_query($con, $select_password);
-        $check_password = mysqli_num_rows($run_password);
-        if($check_password == 0){
+        $fjalekalimi_aktual=$_POST['current_password'];
+        $fjalekalimi_ri = $_POST['new_password'];
+        $fjalekalimi_ri_confirm=$_POST['new_password_confirm'];
+        $zgjidh_password = "select customer_id from customers where customer_email='$user' and customer_password='$fjalekalimi_aktual'";
+        $ekzekuto_password = mysqli_query($con, $zgjidh_password);
+        $kontrollo_password = mysqli_num_rows($ekzekuto_password);
+        if($kontrollo_password == 0){
             echo "<script>alert('Nuk e keni shkruar passwordin sakte!')</script>";
-        }else if($new_password != $new_password_confirm){
+        }else if($fjalekalimi_ri != $fjalekalimi_ri_confirm){
             echo "<script>alert('Passwordet nuk po na rakordojne, ndoshta provojeni perseri')</script>";
         }
         else{
-            $update_password = "update customers set customer_password='$new_password' where customer_email='$user'";
-            $run_update_password = mysqli_query($con, $update_password);
+            $rifresko_password = "update customers set customer_password='$fjalekalimi_ri' where customer_email='$user'";
+            $ekzekuto_rifresko_password = mysqli_query($con, $rifresko_password);
             echo "<script>alert('Passwordi u riakordua me sukses')</script>";
             echo "<script>window.open('my_account.php', '_self')</script>";
         }

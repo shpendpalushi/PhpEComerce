@@ -19,11 +19,11 @@
         <div class="menubar">
             
             <ul id="menu">
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="../all_products.php">All products</a></li>
-                <li><a href="customer/my_account.php">My account</a></li>
-                <li><a href="../customer_register.php">Sign up</a></li>
-                <li><a href="../cart.php">Shopping Card</a></li>
+                <li><a href="../index.php">Kreu</a></li>
+                <li><a href="../all_products.php">Te gjitha produktet</a></li>
+                <li><a href="customer/my_account.php">Llogaria ime</a></li>
+                <li><a href="../customer_register.php">Regjistrohu</a></li>
+                <li><a href="../cart.php">Karta e blerjes</a></li>
                 <li><a href="">Contact Us</a></li>
             </ul>
             <div id="form">
@@ -38,28 +38,28 @@
         <div class="content-wrapper"></div>
         <div id="sidebar">
         
-            <div id="sidebar-title">My account
+            <div id="sidebar-title">Llogaria ime
             </div>
 
             <ul id="cats">
                 <?php
                     $user = $_SESSION['customer_email'];
-                    $get_image = "select * from customers where customer_email='$user'";
-                    $run_image = mysqli_query($con, $get_image);
-                    $row_image = mysqli_fetch_array($run_image);
+                    $merr_imazhin = "select * from customers where customer_email='$user'";
+                    $ekzekuto_imazhin = mysqli_query($con, $merr_imazhin);
+                    $rresht_imazh = mysqli_fetch_array($ekzekuto_imazhin);
 
-                    $customer_image = $row_image['customer_image'];
+                    $klient_imazh = $rresht_imazh['customer_image'];
 
-                    $customer_name = $row_image['customer_name'];
+                    $klient_emer = $rresht_imazh['customer_name'];
 
-                    echo "<p style='text-align:center'><img src='customer_images/$customer_image' width='100' height='100'></p>";
-                    echo "<p style='text-align:center'><b>$customer_name</b></p>";
+                    echo "<p style='text-align:center'><img src='customer_images/$klient_imazh' width='100' height='100'></p>";
+                    echo "<p style='text-align:center'><b>$klient_emer</b></p>";
                 ?>
-                <li><a href="my_account.php?my_orders">My orders</a></li>
-                <li><a href="my_account.php?edit_account">Edit account</a></li>
-                <li><a href="my_account.php?change_password">Change password</a></li>
-                <li><a href="my_account.php?delete_account">Delete account</a></li>
-                <li><a href="../logout.php">Logout</a></li>
+                <li><a href="my_account.php?my_orders">Porosite e mia</a></li>
+                <li><a href="my_account.php?edit_account">Rregullo llogarine</a></li>
+                <li><a href="my_account.php?change_password">Ndrysho fjalekalimin</a></li>
+                <li><a href="my_account.php?delete_account">Fshije Llogarine</a></li>
+                <li><a href="../logout.php">Shkycu</a></li>
             </ul>
 
 
@@ -76,9 +76,9 @@
 
                 <?php 
                     if(isset($_SESSION['customer_email'])){
-                        echo "<b>Welcome:</b>" . $_SESSION['customer_email'];
+                        echo "<b>Mireseerdhe:</b>" . $_SESSION['customer_email'];
                     }else{
-                        echo "<b>Welcome guest</b>";
+                        echo "<b>Mireseerdhe i ftuar</b>";
                     }
                 ?>
                 <?php
@@ -95,10 +95,10 @@
                     
                     if(!isset($_GET['my_orders']) && !isset($_GET['edit_account']) 
                         && !isset($_GET['change_password']) && !isset($_GET['change_account'])){
-                            echo "See your orders history:<a href='my_account.php?my_orders' 
+                            echo "Shiko historine e perdoruesit:<a href='my_account.php?my_orders' 
                             style='text-decoration:none; border:solid 1px grey; margin:10px;padding-left:5px;padding-right:5px; border-radius:4px;
                              background-color:lightgrey'
-                            >History</a>";
+                            >Histori</a>";
                     }
                 ?>
 

@@ -3,21 +3,21 @@
     include("../includes/database.php");
      $user = $_SESSION['customer_email'];
     
-     $get_customer = "select * from customers where customer_email='$user'";
-     $run_customer = mysqli_query($con, $get_image);
+     $merr_perdorues = "select * from customers where customer_email='$user'";
+     $_ekzekuto_perdorues = mysqli_query($con, $merr_perdorues);
      
 
-     $row_customer = mysqli_fetch_array($run_customer);
+     $rresht_perdorues = mysqli_fetch_array($_ekzekuto_perdorues);
 
-     $id = $row_customer['customer_id'];
-     $name =  $row_customer['customer_name'];
-     $email =  $row_customer['customer_email'];
-     $passsword =  $row_customer['customer_password'];
-     $country =  $row_customer['customer_country'];
-     $city =  $row_customer['customer_city'];
-     $contact =  $row_customer['customer_contact'];
-     $address =  $row_customer['customer_address'];
-     $image =  $row_customer['customer_image'];
+     $id = $rresht_perdorues['customer_id'];
+     $emer =  $rresht_perdorues['customer_name'];
+     $email =  $rresht_perdorues['customer_email'];
+     $fjalekalim =  $rresht_perdorues['customer_password'];
+     $shtet =  $rresht_perdorues['customer_country'];
+     $qytet =  $rresht_perdorues['customer_city'];
+     $kontakt =  $rresht_perdorues['customer_contact'];
+     $adrese =  $rresht_perdorues['customer_address'];
+     $foto =  $rresht_perdorues['customer_image'];
 
 ?>
             <form action="" method="post" enctype="multipart/form-data">
@@ -32,7 +32,7 @@
 
                     <tr>
                         <td align="right">Emri i klientit:</td>
-                        <td><input type="text" name="customer_name" value="<?php echo $name ?>" ></td>
+                        <td><input type="text" name="customer_name" value="<?php echo $emer ?>" ></td>
                     </tr>
 
                     <tr>
@@ -49,7 +49,7 @@
                         <td align="right">Shteti:</td>
                         <td>
                             <select name="customer_country" id="" disabled>
-                                <option><?php echo $country ?></option>
+                                <option><?php echo $shtet ?></option>
                                 <option value="Shqiperi">Shqiperi</option>
                                 <option value="US">US</option>
                                 <option value="UK">Uk</option>
@@ -60,20 +60,20 @@
 
                     <tr>
                         <td align="right">Qyteti:</td>
-                        <td><input type="text" name="customer_city" value="<?php echo $city ?>" ></td>
+                        <td><input type="text" name="customer_city" value="<?php echo $qytet ?>" ></td>
                     </tr>
                     <tr>
                         <td align="right">Kontakt:</td>
-                        <td><input type="text" name="customer_contact" value="<?php echo $contact ?>" ></td>
+                        <td><input type="text" name="customer_contact" value="<?php echo $kontakt ?>" ></td>
                     </tr>
                     <tr>
                         <td align="right">Adresa:</td>
-                        <td><input type="text" name="customer_address" value="<?php echo $address ?>" ></td>
+                        <td><input type="text" name="customer_address" value="<?php echo $adrese ?>" ></td>
                     </tr>
                     <tr></tr>
                     <tr>
                         <td align="right">Fotografia e profilit:</td>
-                        <td><input type="file" name="customer_image"> <img src="customer_images/<?php echo $image; ?>" alt="" width="50" height="50"></td>
+                        <td><input type="file" name="customer_image"> <img src="customer_images/<?php echo $foto; ?>" alt="" width="50" height="50"></td>
                     </tr>
                     
                     <tr>
@@ -89,23 +89,23 @@
         if(isset($_POST['update'])){
             $ip = getIp();
 
-            $customer_id = $id;
-            $customer_name = $_POST['customer_name'];
-            $customer_email = $_POST['customer_email'];
-            $customer_password = $_POST['customer_password'];
-            $customer_image = $_FILES['customer_image']['name'];
-            $customer_image_tmp = $_FILES['customer_image']['tmp_name'];
-            $customer_country = $_POST['customer_country'];
-            $customer_city = $_POST['customer_city'];
-            $customer_contact = $_POST['customer_contact'];  
-            $customer_address = $_POST['customer_address']; 
-            move_uploaded_file($customer_image_tmp,"customer_images/$customer_image");   
-            $update_customer = "update customers set customer_name='$customer_name', customer_email='$customer_email', customer_password='$customer_password',
-            customer_image='$customer_image',customer_city='$customer_city', customer_contact='$customer_contact', customer_address='$customer_address' where customer_id='$customer_id'";
+            $perdorues_id = $id;
+            $emer_perdorues = $_POST['customer_name'];
+            $email_perdorues = $_POST['customer_email'];
+            $fjalekalim_perdorues = $_POST['customer_password'];
+            $foto_perdorues = $_FILES['customer_image']['name'];
+            $foto_perdorues_tmp = $_FILES['customer_image']['tmp_name'];
+            $shtet_perdorues = $_POST['customer_country'];
+            $qytet_perdorues = $_POST['customer_city'];
+            $kontakt_perdorues = $_POST['customer_contact'];  
+            $adrese_perdorues = $_POST['customer_address']; 
+            move_uploaded_file($foto_perdorues_tmp,"customer_images/$foto_perdorues");   
+            $rifresko_perdorues = "update customers set customer_name='$emer_perdorues', customer_email='$email_perdorues', customer_password='$fjalekalim_perdorues',
+            customer_image='$foto_perdorues',customer_city='$qytet_perdorues', customer_contact='$kontakt_perdorues', customer_address='$adrese_perdorues' where customer_id='$perdorues_id'";
 
-            $run_update = mysqli_query($con,$update_customer);
+            $ekzekuto_rifreskim = mysqli_query($con,$rifresko_perdorues);
 
-            if($run_update){
+            if($ekzekuto_rifreskim){
                 echo "<script>alert('Llogaria juaj u rinovua me sukses') </script>";
                 echo "<script>window.open('my_account.php','_self')</script>";
             }
