@@ -85,13 +85,15 @@
         </div>
             <div id="products_box">
                 <form action="" method="post" enctype="multipart/form-data">
-                    <table align="center" width="700" class="cart_table">
-                        <tr align="center" class="t_row">
-                            <th>Hiq</th>
-                            <th>Produkti</th>
-                            <th>Sasia</th>
-                            <th>Cmimi(Total) </th>
-                        </tr>
+                    <table align="center" width="700" class="cart_table table">
+                        <thead>
+                            <tr align="center" class="t_row">
+                                <th>Hiq</th>
+                                <th>Produkti</th>
+                                <th>Sasia</th>
+                                <th>Cmimi(Total) </th>
+                            </tr>
+                        </thead>
 
                         <?php 
                             
@@ -136,20 +138,20 @@
                             <td><?php echo "$".$cmim_total_produkti?></td>
                         </tr>
                         <?php $total += $cmim_total_produkti;  }?>
-                        <tr class="t_row">
-                            <td colspan="3">Sub Total:</td>
-                            <td align="center"><?php echo "$".$total ;?></td>
-                        </tr>
-                        <tr align="center" class="t_row">
-                            <td><input type="submit" name="update_cart" value="Update Cart"></td>
-                            <td><input type="submit" name="continue" value="Continue shopping"></td>
-                            <td><button><a href="checkout.php" style="text-decoration:none; color:black">Proceso</a></button></td>
-                        </tr>
+                        <tfoot>
+                            <tr class="t_row">
+                                <td colspan="3">Sub Total:</td>
+                                <td align="center"><?php echo "$".$total ;?></td>
+                            </tr>
+                            <tr align="center" class="t_row">
+                                <td><input type="submit" name="update_cart" value="Update Cart"></td>
+                                <td><input type="submit" name="continue" value="Continue shopping"></td>
+                                <td><button><a href="checkout.php" style="text-decoration:none; color:black">Proceso</a></button></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </form>
                 <?php
-                    
-                        echo "Function called";
                         global $con;
                         $ip = getIp();
                         if(isset($_POST['update_cart'])){

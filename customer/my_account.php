@@ -2,6 +2,11 @@
 <?php 
     session_start();
     include("../functions/functions.php");
+
+    if(!isset($_SESSION['customer_email'])){
+        echo "<script>window.open('../logout.php','_self')</script>";
+    }else{
+
 ?>
 <html lang="en">
 <head>
@@ -123,3 +128,5 @@
     </div>
 </body>
 </html>
+
+                <?php }?>

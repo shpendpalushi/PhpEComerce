@@ -275,9 +275,11 @@ function total_price(){
         $ekzektuo_produkt_cmim = mysqli_query($con,$produkt_cmim);
         while($pp_cmim=mysqli_fetch_array($ekzektuo_produkt_cmim)){
             $produkt_tabele_cmim = array($pp_cmim['product_price']);
+            $vlerat=array_sum($produkt_tabele_cmim);
+            $total += $vlerat;
         }
-        $vlerat=array_sum($produkt_tabele_cmim);
-        $total += $vlerat;
+        
+       
     }
     echo "$".$total;
 }
