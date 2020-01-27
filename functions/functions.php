@@ -6,14 +6,14 @@ function getCategories(){
 
     global $con;
 
-    $get_categories = "select * from categories";
-    $run_categories = mysqli_query($con, $get_categories);
+    $merr_kategorite = "select * from categories";
+    $merr_kategorite = mysqli_query($con, $merr_kategorite);
 
-    while($row_categories = mysqli_fetch_array($run_categories)) {
+    while($rresht_kategorite = mysqli_fetch_array($merr_kategorite)) {
 
-        $category_id = $row_categories['category_id'];
-        $category_title = $row_categories['category_title'];
-        echo "<li><a href='index.php?category=$category_id'>$category_title</a></li>";
+        $id_kategorie = $rresht_kategorite['category_id'];
+        $kategori_titull = $rresht_kategorite['category_title'];
+        echo "<li><a href='index.php?category=$id_kategorie'>$kategori_titull</a></li>";
 
     }
 
@@ -24,14 +24,14 @@ function getBrands(){
 
     global $con;
 
-    $get_brands = "select * from brands";
-    $run_brands = mysqli_query($con, $get_brands);
+    $merr_brandet = "select * from brands";
+    $ekzektuo_brandet = mysqli_query($con, $merr_brandet);
 
-    while($row_brands = mysqli_fetch_array($run_brands)) {
+    while($rresht_brandet = mysqli_fetch_array($ekzektuo_brandet)) {
 
-        $brand_id = $row_brands['brand_id'];
-        $brand_title = $row_brands['brand_title'];
-        echo "<li><a href='index.php?brand=$brand_id'>$brand_title</a></li>";
+        $brand_id = $rresht_brandet['brand_id'];
+        $titull_brand = $rresht_brandet['brand_title'];
+        echo "<li><a href='index.php?brand=$brand_id'>$titull_brand</a></li>";
 
     }
 
@@ -41,25 +41,25 @@ function getProducts(){
     if(!isset($_GET['category'])){
         if(!isset($_GET['brand'])){ 
             global $con;
-            $get_products = "select * from products order by RAND() LIMIT 0,6";
-            $run_get_products = mysqli_query($con,$get_products);
-            while($row_product= mysqli_fetch_array($run_get_products)){
-                $product_id = $row_product['product_id'];
-                $product_category = $row_product['product_category'];
-                $product_brand = $row_product['product_brand'];
-                $product_title = $row_product['product_title'];
-                $product_price = $row_product['product_price'];
-                $product_image = $row_product['product_image'];
+            $merr_produktet = "select * from products order by RAND() LIMIT 0,6";
+            $ekzekuto_merr_produktet = mysqli_query($con,$merr_produktet);
+            while($rresht_produkt= mysqli_fetch_array($ekzekuto_merr_produktet)){
+                $produkt_id = $rresht_produkt['product_id'];
+                $produkt_kategori = $rresht_produkt['product_category'];
+                $produkt_brand = $rresht_produkt['product_brand'];
+                $titull_produkt = $rresht_produkt['product_title'];
+                $produkt_cmim = $rresht_produkt['product_price'];
+                $foto_produkt = $rresht_produkt['product_image'];
 
                 echo "
                         <div id='single_product'>
-                            <h3>$product_title</h3>
+                            <h3>$titull_produkt</h3>
                             
-                            <img src='admin_area/product_images/$product_image' width='180' height='180'>
-                            <p style='text-align:center'>Price: $ $product_price</p><br>
+                            <img src='admin_area/product_images/$foto_produkt' width='180' height='180'>
+                            <p style='text-align:center'>Cmimi: $ $produkt_cmim</p><br>
 
-                            <a href='details.php?product_id=$product_id' style='float:left'>Details</a>
-                            <a href='index.php?add_cart=$product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
+                            <a href='details.php?product_id=$produkt_id' style='float:left'>Detaje</a>
+                            <a href='index.php?add_cart=$produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
 
                         </div>
                 
@@ -73,31 +73,31 @@ function getProducts(){
 
 function getCategoryProducts(){
     if(isset($_GET['category'])){
-        $my_category_id = $_GET['category'];
+        $kategoria_ime_id = $_GET['category'];
         global $con;
-        $get_category_products = "select * from products where product_category='$my_category_id'";
-        $run_category_products = mysqli_query($con,$get_category_products);
-        $count = mysqli_num_rows($run_category_products);
+        $merr_kategori_products = "select * from products where product_category='$kategoria_ime_id'";
+        $merr_produktet_kategori = mysqli_query($con,$merr_kategori_products);
+        $count = mysqli_num_rows($merr_produktet_kategori);
         if($count==0){
             echo "<h4>Kjo kategori nuk ka ende produkte ju kerkojme ndjese!</h4>";
         }
-        while($row_category_product= mysqli_fetch_array($run_category_products)){
-            $product_id = $row_category_product['product_id'];
-            $product_category = $row_category_product['product_category'];
-            $product_brand = $row_category_product['product_brand'];
-            $product_title = $row_category_product['product_title'];
-            $product_price = $row_category_product['product_price'];
-            $product_image = $row_category_product['product_image'];
+        while($rresht_kategori_produkt= mysqli_fetch_array($merr_produktet_kategori)){
+            $produkt_id = $rresht_kategori_produkt['product_id'];
+            $produkt_kategori = $rresht_kategori_produkt['product_category'];
+            $produkt_brand = $rresht_kategori_produkt['product_brand'];
+            $titull_produkt = $rresht_kategori_produkt['product_title'];
+            $produkt_cmim = $rresht_kategori_produkt['product_price'];
+            $foto_produkt = $rresht_kategori_produkt['product_image'];
             
             echo "
                     <div id='single_product'>
-                        <h3>$product_title</h3>
+                        <h3>$titull_produkt</h3>
                         
-                        <img src='admin_area/product_images/$product_image' width='180' height='180'>
-                        <p style='text-align:center'>Price: $ $product_price</p><br>
+                        <img src='admin_area/product_images/$foto_produkt' width='180' height='180'>
+                        <p style='text-align:center'>Cmimi: $ $produkt_cmim</p><br>
 
-                        <a href='details.php?product_id=$product_id' style='float:left'>Details</a>
-                        <a href='index.php?product_id = $product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
+                        <a href='details.php?product_id=$produkt_id' style='float:left'>Detaje</a>
+                        <a href='index.php?product_id = $produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
 
                     </div>
             
@@ -111,31 +111,30 @@ function getCategoryProducts(){
 
 function getBrandProducts(){
     if(isset($_GET['brand'])){
-        $my_brand_id = $_GET['brand'];
+        $id_brandi = $_GET['brand'];
         global $con;
-        $get_brand_products = "select * from products where product_brand='$my_brand_id'";
-        $run_brand_products = mysqli_query($con,$get_brand_products);
-        $count = mysqli_num_rows($run_brand_products);
+        $merr_produktet_e_brandit = "select * from products where product_brand='$id_brandi'";
+        $ekzekuto_produktet_e_brandit = mysqli_query($con,$merr_produktet_e_brandit);
+        $count = mysqli_num_rows($ekzekuto_produktet_e_brandit);
         if($count==0){
             echo "<h4>Ky brand nuk ka ende produkte ju kerkojme ndjese!</h4>";
         }
-        while($row_brand_product= mysqli_fetch_array($run_brand_products)){
-            $product_id = $row_brand_product['product_id'];
-            $product_brand = $row_brand_product['product_brand'];
-            $product_brand = $row_brand_product['product_brand'];
-            $product_title = $row_brand_product['product_title'];
-            $product_price = $row_brand_product['product_price'];
-            $product_image = $row_brand_product['product_image'];
+        while($rresht_brand_produkt= mysqli_fetch_array($ekzekuto_produktet_e_brandit)){
+            $produkt_id = $rresht_brand_produkt['product_id'];
+            $produkt_brand = $rresht_brand_produkt['product_brand'];
+            $titull_produkt = $rresht_brand_produkt['product_title'];
+            $produkt_cmim = $rresht_brand_produkt['product_price'];
+            $foto_produkt = $rresht_brand_produkt['product_image'];
             
             echo "
                     <div id='single_product'>
-                        <h3>$product_title</h3>
+                        <h3>$titull_produkt</h3>
                         
-                        <img src='admin_area/product_images/$product_image' width='180' height='180'>
-                        <p style='text-align:center'>Price: $ $product_price</p><br>
+                        <img src='admin_area/product_images/$foto_produkt' width='180' height='180'>
+                        <p style='text-align:center'>Cmimi: $ $produkt_cmim</p><br>
 
-                        <a href='details.php?product_id=$product_id' style='float:left'>Details</a>
-                        <a href='index.php?product_id = $product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
+                        <a href='details.php?product_id=$produkt_id' style='float:left'>Detaje</a>
+                        <a href='index.php?product_id = $produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
 
                     </div>
             
@@ -148,25 +147,25 @@ function getBrandProducts(){
 
 function getAllProducts(){ 
     global $con;
-    $get_products = "select * from products";
-    $run_get_products = mysqli_query($con,$get_products);
-    while($row_product= mysqli_fetch_array($run_get_products)){
-        $product_id = $row_product['product_id'];
-        $product_category = $row_product['product_category'];
-        $product_brand = $row_product['product_brand'];
-        $product_title = $row_product['product_title'];
-        $product_price = $row_product['product_price'];
-        $product_image = $row_product['product_image'];
+    $merr_produktet = "select * from products";
+    $ekzekuto_merr_produktet = mysqli_query($con,$merr_produktet);
+    while($rresht_produkt= mysqli_fetch_array($ekzekuto_merr_produktet)){
+        $produkt_id = $rresht_produkt['product_id'];
+        $produkt_kategori = $rresht_produkt['product_category'];
+        $produkt_brand = $rresht_produkt['product_brand'];
+        $titull_produkt = $rresht_produkt['product_title'];
+        $produkt_cmim = $rresht_produkt['product_price'];
+        $foto_produkt = $rresht_produkt['product_image'];
 
         echo "
                 <div id='single_product'>
-                    <h3>$product_title</h3>
+                    <h3>$titull_produkt</h3>
                     
-                    <img src='admin_area/product_images/$product_image' width='180' height='180'>
-                    <p style='text-align:center'>Price: $ $product_price</p><br>
+                    <img src='admin_area/product_images/$foto_produkt' width='180' height='180'>
+                    <p style='text-align:center'>Cmimi: $ $produkt_cmim</p><br>
 
-                    <a href='details.php?product_id=$product_id' style='float:left'>Details</a>
-                    <a href='all_products.php?add_cart=$product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
+                    <a href='details.php?product_id=$produkt_id' style='float:left'>Detaje</a>
+                    <a href='all_products.php?add_cart=$produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
 
                 </div>
         
@@ -178,29 +177,29 @@ function getAllProducts(){
 function getDetailsForProduct(){
     global $con;
     if(isset($_GET['product_id'])){
-        $product_id = $_GET['product_id'];
-        $get_my_product = "select * from products where product_id = '$product_id'";
+        $produkt_id = $_GET['product_id'];
+        $merr_produktin_tim = "select * from products where product_id = '$produkt_id'";
 
-        $run_query = mysqli_query($con, $get_my_product);
+        $ekzekuto_kerkesen = mysqli_query($con, $merr_produktin_tim);
 
-        while($row_product = mysqli_fetch_array($run_query)){
-            $product_id = $row_product['product_id'];
+        while($rresht_produkt = mysqli_fetch_array($ekzekuto_kerkesen)){
+            $produkt_id = $rresht_produkt['product_id'];
             
-            $product_title = $row_product['product_title'];
-            $product_price = $row_product['product_price'];
-            $product_image = $row_product['product_image'];
-            $product_description = $row_product['product_description'];
+            $titull_produkt = $rresht_produkt['product_title'];
+            $produkt_cmim = $rresht_produkt['product_price'];
+            $foto_produkt = $rresht_produkt['product_image'];
+            $foto_pershkrim = $rresht_produkt['product_description'];
 
             echo "
             <div id='single_product'>
-                <h3>$product_title</h3>
+                <h3>$titull_produkt</h3>
                 
-                <img src='admin_area/product_images/$product_image' width='400' height='400'>
-                <p>Price: $$product_price</p><br>
-                <p>$product_description</p><br>
+                <img src='admin_area/product_images/$foto_produkt' width='400' height='400'>
+                <p>Cmimi: $$produkt_cmim</p><br>
+                <p>$foto_pershkrim</p><br>
 
                 <a href='index.php' style='float:left'>Go Back</a>
-                <a href='index.php?product_id = $product_id' style='float:right'><button style='float:right'>Add to Cart</button></a>
+                <a href='index.php?product_id = $produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
 
             </div>
     
@@ -215,16 +214,16 @@ function cart(){
     if(isset($_GET['add_cart'])){
         global $con;
         $ip = getIp();
-         $product_id = $_GET['add_cart'];
-         $check_product= "select * from cart where ip_address = '$ip' AND product_id='$product_id'";
-         $run_check = mysqli_query($con, $check_product);
+         $produkt_id = $_GET['add_cart'];
+         $kontrollo_produkt= "select * from cart where ip_address = '$ip' AND product_id='$produkt_id'";
+         $ekzekuto_kontroll = mysqli_query($con, $kontrollo_produkt);
 
-         if(mysqli_num_rows($run_check)>0){
+         if(mysqli_num_rows($ekzekuto_kontroll)>0){
              echo "";
          }else{
-             $insert_product = "insert into cart (product_id, ip_address) values('$product_id','$ip')";
+             $shto_product = "insert into cart (product_id, ip_address) values('$produkt_id','$ip')";
 
-             $run_product = mysqli_query($con, $insert_product);
+             $ekzekuto_produkt = mysqli_query($con, $shto_product);
              echo "<script>
                 window.open('index.php', '_self');
              </script>";
@@ -248,17 +247,17 @@ function total_items(){
     global $con;
     if(isset($_GET['add_cart'])){
         $ip = getIp();
-        $get_items = "select * from cart where ip_address = '$ip'";
-        $run_items = mysqli_query($con, $get_items);
-        $count_items = mysqli_num_rows($run_items);
+        $merr_artikuj = "select * from cart where ip_address = '$ip'";
+        $ekzektuo_aritkuj = mysqli_query($con, $merr_artikuj);
+        $numero_artkuj = mysqli_num_rows($ekzektuo_aritkuj);
     }else{
         global $con;
         $ip = getIp();
-        $get_items = "select * from cart where ip_address = '$ip'";
-        $run_items = mysqli_query($con, $get_items);
-        $count_items = mysqli_num_rows($run_items);
+        $merr_artikuj = "select * from cart where ip_address = '$ip'";
+        $ekzektuo_aritkuj = mysqli_query($con, $merr_artikuj);
+        $numero_artkuj = mysqli_num_rows($ekzektuo_aritkuj);
     }
-    echo $count_items;
+    echo $numero_artkuj;
 }
 
 function total_price(){
@@ -267,18 +266,20 @@ function total_price(){
     global $con;
 
     $ip = getIp();
-    $select_price = "select * from cart where ip_address='$ip'";
+    $zgjidh_cmim = "select * from cart where ip_address='$ip'";
 
-    $run_price = mysqli_query($con, $select_price);
-    while($p_price = mysqli_fetch_array($run_price)){
-        $product_id = $p_price['product_id'];
-        $product_price = "select * from products where product_id = '$product_id'";
-        $run_product_price = mysqli_query($con,$product_price);
-        while($pp_price=mysqli_fetch_array($run_product_price)){
-            $table_product_price = array($pp_price['product_price']);
+    $ekzekuto_cmim = mysqli_query($con, $zgjidh_cmim);
+    while($p_cmim = mysqli_fetch_array($ekzekuto_cmim)){
+        $produkt_id = $p_cmim['product_id'];
+        $produkt_cmim = "select * from products where product_id = '$produkt_id'";
+        $ekzektuo_produkt_cmim = mysqli_query($con,$produkt_cmim);
+        while($pp_cmim=mysqli_fetch_array($ekzektuo_produkt_cmim)){
+            $produkt_tabele_cmim = array($pp_cmim['product_price']);
+            $vlerat=array_sum($produkt_tabele_cmim);
+            $total += $vlerat;
         }
-        $values=array_sum($table_product_price);
-        $total += $values;
+        
+       
     }
     echo "$".$total;
 }

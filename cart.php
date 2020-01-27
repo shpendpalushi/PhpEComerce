@@ -20,12 +20,12 @@
         <div class="menubar">
             
             <ul id="menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="all_products.php">All products</a></li>
-                <li><a href="customer/my_account.php">My account</a></li>
-                <li><a href="">Sign up</a></li>
-                <li><a href="cart.php">Shopping Card</a></li>
-                <li><a href="">Contact Us</a></li>
+                <li><a href="index.php">Kreu</a></li>
+                <li><a href="all_products.php">Te gjitha produktet</a></li>
+                <li><a href="customer/my_account.php">Llogaria ime</a></li>
+                <li><a href="">Hyr</a></li>
+                <li><a href="cart.php">Karta</a></li>
+                <li><a href="">Na kontaktoni</a></li>
             </ul>
             <div id="form">
                 <form action="results.php" method="get" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
         <div class="content-wrapper"></div>
         <div id="sidebar">
         
-            <div id="sidebar-title">Categories
+            <div id="sidebar-title">Kategorite
             </div>
 
             <ul id="cats">
@@ -47,7 +47,7 @@
             </ul>
 
 
-            <div id="sidebar-title">Brands
+            <div id="sidebar-title">Brandet
             </div>
             
             <ul id="cats">
@@ -64,14 +64,14 @@
             <span style="float:right; font-size:18px; padding:5px;line-height:40px;">
                 <?php 
                     if(isset($_SESSION['customer_email'])){
-                        echo "<b>Welcome:</b>" . $_SESSION['customer_email']."\t";
+                        echo "<b>Mireseerdhe:</b>" . $_SESSION['customer_email']."\t";
                     }else{
-                        echo "Welcome guest";
+                        echo "Mireserdhe i ftuar";
                     }
                 ?>
 
-                <b>Total items:</b><?php total_items();?> <b>Total price:</b><?php total_price();?>
-                <a href="index.php" style="border:1px solid black; text-decoration:none;color:black;border-radius:4px">Back to shop</a>
+                <b>Produktet:</b><?php total_items();?> <b>Cmimi total:</b><?php total_price();?>
+                <a href="index.php" style="border:1px solid black; text-decoration:none;color:black;border-radius:4px">Kthehu</a>
 
                 <?php
                     if(!isset($_SESSION['customer_email'])){
@@ -85,13 +85,15 @@
         </div>
             <div id="products_box">
                 <form action="" method="post" enctype="multipart/form-data">
-                    <table align="center" width="700" class="cart_table">
-                        <tr align="center" class="t_row">
-                            <th>Hiq</th>
-                            <th>Produkti</th>
-                            <th>Sasia</th>
-                            <th>Cmimi(Total) </th>
-                        </tr>
+                    <table align="center" width="700" class="cart_table table">
+                        <thead>
+                            <tr align="center" class="t_row">
+                                <th>Hiq</th>
+                                <th>Produkti</th>
+                                <th>Sasia</th>
+                                <th>Cmimi(Total) </th>
+                            </tr>
+                        </thead>
 
                         <?php 
                             
@@ -100,64 +102,64 @@
                             global $con;
                         
                             $ip = getIp();
-                            $select_price = "select * from cart where ip_address='$ip'";
+                            $selekto_cmim = "select * from cart where ip_address='$ip'";
                         
-                            $run_price = mysqli_query($con, $select_price);
-                            while($p_price = mysqli_fetch_array($run_price)){
+                            $ekzekuto_cmim = mysqli_query($con, $selekto_cmim);
+                            while($p_cmim = mysqli_fetch_array($ekzekuto_cmim)){
 
-                                $product_id = $p_price['product_id'];
-                                $product_price = "select * from products where product_id = '$product_id' limit 1";
-                                $run_product_price = mysqli_query($con,$product_price);
+                                $id_produkt = $p_cmim['product_id'];
+                                $cmim_produkti = "select * from products where product_id = '$id_produkt' limit 1";
+                                $ekzekuto_cmim_produkti = mysqli_query($con,$cmim_produkti);
 
-                                $product_in_table = mysqli_fetch_object($run_product_price);
+                                $produkt_ne_tabele = mysqli_fetch_object($ekzekuto_cmim_produkti);
                                 
                         ?>
 
                         <tr align="center" class="t_row">
-                            <td><input type="checkbox" name="remove[]" value="<?php echo $product_id;?>"></td>
-                            <td> <?php echo $product_in_table->product_title ;?><br>
-                            <img src="admin_area/product_images/<?php echo $product_in_table->product_image; ?>" width="60" height="60"><br>
-                            <?php echo "$ $product_in_table->product_price;"?>
+                            <td><input type="checkbox" name="remove[]" value="<?php echo $id_produkt;?>"></td>
+                            <td> <?php echo $produkt_ne_tabele->product_title ;?><br>
+                            <img src="admin_area/product_images/<?php echo $produkt_ne_tabele->product_image; ?>" width="60" height="60"><br>
+                            <?php echo "$ $produkt_ne_tabele->product_price;"?>
                             </td>
                             <td><input type="text" size="1" style="width:50px" name="quantity" value="<?php echo $_SESSION['quantity']; ?>"></td>
                             <?php
                                 
                                 if(isset($_POST['update_cart'])){
-                                    $quantity = $_POST['quantity'];
-                                    $update_quantity = "update cart set quantity='$quantity' where product_id='$product_id'";
+                                    $sasia = $_POST['quantity'];
+                                    $rifresko_sasi = "update cart set quantity='$sasia' where product_id='$id_produkt'";
                                     
-                                    $run_quantity = mysqli_query($con, $update_quantity);
-                                    $_SESSION['quantity'] = $quantity;
-                                    $total_price_product = $quantity * $product_in_table->product_price;
+                                    $ekzekuto_sasi = mysqli_query($con, $rifresko_sasi);
+                                    $_SESSION['quantity'] = $sasia;
+                                    $cmim_total_produkti = $sasia * $produkt_ne_tabele->product_price;
                                     
                                 }
                                     
                             ?>
-                            <td><?php echo "$".$total_price_product?></td>
+                            <td><?php echo "$".$cmim_total_produkti?></td>
                         </tr>
-                        <?php $total += $total_price_product;  }?>
-                        <tr class="t_row">
-                            <td colspan="3">Sub Total:</td>
-                            <td align="center"><?php echo "$".$total ;?></td>
-                        </tr>
-                        <tr align="center" class="t_row">
-                            <td><input type="submit" name="update_cart" value="Update Cart"></td>
-                            <td><input type="submit" name="continue" value="Continue shopping"></td>
-                            <td><button><a href="checkout.php" style="text-decoration:none; color:black">Checkout</a></button></td>
-                        </tr>
+                        <?php $total += $cmim_total_produkti;  }?>
+                        <tfoot>
+                            <tr class="t_row">
+                                <td colspan="3">Sub Total:</td>
+                                <td align="center"><?php echo "$".$total ;?></td>
+                            </tr>
+                            <tr align="center" class="t_row">
+                                <td><input type="submit" name="update_cart" value="Update Cart"></td>
+                                <td><input type="submit" name="continue" value="Continue shopping"></td>
+                                <td><button><a href="checkout.php" style="text-decoration:none; color:black">Proceso</a></button></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </form>
                 <?php
-                    
-                        echo "Function called";
                         global $con;
                         $ip = getIp();
                         if(isset($_POST['update_cart'])){
-                                foreach($_POST['remove'] as $remove_id){
-                                    $delete_product = "Delete from cart where product_id='$remove_id' and ip_address='$ip'";
-                                    $run_delete = mysqli_query($con, $delete_product);
-                                    echo "$run_delete";
-                                    if($run_delete){
+                                foreach($_POST['remove'] as $hiq_id){
+                                    $delete_product = "Delete from cart where product_id='$hiq_id' and ip_address='$ip'";
+                                    $ekzekuto_fshirje = mysqli_query($con, $delete_product);
+                                    echo "$ekzekuto_fshirje";
+                                    if($ekzekuto_fshirje){
                                         echo "<script> window.open('cart.php', '_self')</script>";
                                     }else{
                                         echo "<script> window.open('cart.php', '_self')</script>";

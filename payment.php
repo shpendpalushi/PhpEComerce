@@ -9,7 +9,7 @@
 <body>
 
     <div>
-        <h4 style="text-align:center"><b>Pay now with paypal</b></h4>
+        <h4 style="text-align:center"><b>Paguaj me paypal</b></h4>
         <p  style="text-align:center"><img src="paypal.png" alt="paypal image" width="250" height="150"></p>
     </div>
 </body>

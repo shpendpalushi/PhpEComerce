@@ -15,16 +15,20 @@
     <div class="wrapper">
         <div class="header-wrapper">
             <a href="index.php"><img src="images/1.png" alt="" id="logo"></a>
+            <div style="float:right; color:snow; padding-top:30px; padding-right:30px;font-size:2rem;
+                    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    VENDI KU TAKOHENI ME TEKNOLOGJINE</div>
         </div>
+        
         <div class="menubar">
             
             <ul id="menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="all_products.php">All products</a></li>
-                <li><a href="customer/my_account.php">My account</a></li>
-                <li><a href="">Sign up</a></li>
-                <li><a href="cart.php">Shopping Card</a></li>
-                <li><a href="">Contact Us</a></li>
+                <li><a href="index.php">Kreu</a></li>
+                <li><a href="all_products.php">Te gjitha produktet</a></li>
+                <li><a href="customer/my_account.php">Llogaria ime</a></li>
+                <li><a href="checkout.php">Hyr</a></li>
+                <li><a href="cart.php">Karta e blerje</a></li>
+                <li><a href="">Na kontaktoni</a></li>
             </ul>
             <div id="form">
                 <form action="results.php" method="get" enctype="multipart/form-data">
@@ -38,7 +42,7 @@
         <div class="content-wrapper"></div>
         <div id="sidebar">
         
-            <div id="sidebar-title">Categories
+            <div id="sidebar-title">Kategorite
             </div>
 
             <ul id="cats">
@@ -46,7 +50,7 @@
             </ul>
 
 
-            <div id="sidebar-title">Brands
+            <div id="sidebar-title">Brandet
             </div>
             
             <ul id="cats">
@@ -64,19 +68,19 @@
 
                 <?php 
                     if(isset($_SESSION['customer_email'])){
-                        echo "<b>Welcome</b>" . $_SESSION['customer_email'];
+                        echo "<b>Miresevini</b>" . $_SESSION['customer_email'];
                     }else{
-                        echo "<b>Welcome guest</b>";
+                        echo "<b>Miresevini i ftuar</b>";
                     }
                 ?>
                 
-                <b>  Shopping Cart - </b> Total items:<?php total_items();?> Total price:<b><?php total_price();?></b>
-                <a href="cart.php">Go to cart</a>
+                <b>  Karta - </b> Produktet:<b><?php total_items();?></b> Cmimi total:<b><?php total_price();?></b>
+                <a href="cart.php">Karta</a>
                 <?php
                     if(!isset($_SESSION['customer_email'])){
-                        echo "<a href='checkout.php'>Login</a>";
+                        echo "<a href='checkout.php'>Kycu</a>";
                     }else{
-                        echo "<a href='logout.php'>Logout</a>";
+                        echo "<a href='logout.php'>Shkycu</a>";
                     }
                 ?>
             </span>
