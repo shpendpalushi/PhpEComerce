@@ -15,14 +15,18 @@
     <div class="wrapper">
         <div class="header-wrapper">
             <a href="index.php"><img src="images/1.png" alt="" id="logo"></a>
+            <div style="float:right; color:snow; padding-top:30px; padding-right:30px;font-size:2rem;
+                    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    VENDI KU TAKOHENI ME TEKNOLOGJINE</div>
         </div>
+        
         <div class="menubar">
             
             <ul id="menu">
                 <li><a href="index.php">Kreu</a></li>
                 <li><a href="all_products.php">Te gjitha produktet</a></li>
                 <li><a href="customer/my_account.php">Llogaria ime</a></li>
-                <li><a href="">Hyr</a></li>
+                <li><a href="checkout.php">Hyr</a></li>
                 <li><a href="cart.php">Karta e blerje</a></li>
                 <li><a href="">Na kontaktoni</a></li>
             </ul>

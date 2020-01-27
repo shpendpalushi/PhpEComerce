@@ -56,7 +56,7 @@ function getProducts(){
                             <h3>$titull_produkt</h3>
                             
                             <img src='admin_area/product_images/$foto_produkt' width='180' height='180'>
-                            <p style='text-align:center'>Price: $ $produkt_cmim</p><br>
+                            <p style='text-align:center'>Cmimi: $ $produkt_cmim</p><br>
 
                             <a href='details.php?product_id=$produkt_id' style='float:left'>Detaje</a>
                             <a href='index.php?add_cart=$produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
@@ -94,7 +94,7 @@ function getCategoryProducts(){
                         <h3>$titull_produkt</h3>
                         
                         <img src='admin_area/product_images/$foto_produkt' width='180' height='180'>
-                        <p style='text-align:center'>Price: $ $produkt_cmim</p><br>
+                        <p style='text-align:center'>Cmimi: $ $produkt_cmim</p><br>
 
                         <a href='details.php?product_id=$produkt_id' style='float:left'>Detaje</a>
                         <a href='index.php?product_id = $produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
@@ -131,7 +131,7 @@ function getBrandProducts(){
                         <h3>$titull_produkt</h3>
                         
                         <img src='admin_area/product_images/$foto_produkt' width='180' height='180'>
-                        <p style='text-align:center'>Price: $ $produkt_cmim</p><br>
+                        <p style='text-align:center'>Cmimi: $ $produkt_cmim</p><br>
 
                         <a href='details.php?product_id=$produkt_id' style='float:left'>Detaje</a>
                         <a href='index.php?product_id = $produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
@@ -162,7 +162,7 @@ function getAllProducts(){
                     <h3>$titull_produkt</h3>
                     
                     <img src='admin_area/product_images/$foto_produkt' width='180' height='180'>
-                    <p style='text-align:center'>Price: $ $produkt_cmim</p><br>
+                    <p style='text-align:center'>Cmimi: $ $produkt_cmim</p><br>
 
                     <a href='details.php?product_id=$produkt_id' style='float:left'>Detaje</a>
                     <a href='all_products.php?add_cart=$produkt_id' style='float:right'><button style='float:right'>Shto ne karte</button></a>
@@ -195,7 +195,7 @@ function getDetailsForProduct(){
                 <h3>$titull_produkt</h3>
                 
                 <img src='admin_area/product_images/$foto_produkt' width='400' height='400'>
-                <p>Price: $$produkt_cmim</p><br>
+                <p>Cmimi: $$produkt_cmim</p><br>
                 <p>$foto_pershkrim</p><br>
 
                 <a href='index.php' style='float:left'>Go Back</a>
